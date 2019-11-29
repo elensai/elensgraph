@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hdfs-browser
+  labels:
+    dep: hdfs-browser
+spec:
+  type: NodePort
+  ports:
+    - name: hdfs
+      port: 50070
+      targetPort: 50070
+      nodePort: 50070
+  selector:
+    statefulset.kubernetes.io/pod-name: web-0
+    statefulset.kubernetes.io/pod-name: web-2
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: spark-browser
+  labels:
+    dep: spark-browser
+spec:
+  type: NodePort
+  ports:
+    - name: spark
+      port: 8080
+      targetPort: 8080
+      nodePort: 8080
+  selector:
+    app: centospod
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: yarn-browser
+  labels:
+    dep: yarn-browser
+spec:
+  type: NodePort
+  ports:
+    - name: yarn
+      port: 8088
+      targetPort: 8088
+      nodePort: 8088
+  selector:
+    statefulset.kubernetes.io/pod-name: web-1
+    statefulset.kubernetes.io/pod-name: web-2
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: history-browser
+  labels:
+    dep: history-browser
+spec:
+  type: NodePort
+  ports:
+    - name: history
+      port: 19888
+      targetPort: 19888
+      nodePort: 19888
+  selector:
+    statefulset.kubernetes.io/pod-name: web-1
+
+# 50070  hdfs  0 2
+# 8080  spark
+# 8088  yarn  1 2
+# 19888  mapreducehistory 1

@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: olapjdbc
+  namespace: elens-zhitu
+data:
+  olapjdbc-config: |-
+    #Mysql Oracle Postgresql
+    base.dataSource=Mysql
+    base.url=jdbc\:mysql\://mysql-svc:3306/olap2.0?useUnicode=true&characterEncoding=UTF-8
+    #base.url=jdbc\:mysql\://183.174.228.44:8282/olap2.0?useUnicode=true&characterEncoding=UTF-8
+    base.driver=com.mysql.jdbc.Driver
+    base.username=root
+    base.password=Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==
+    base.db=mysql
+
+    #kylin api
+    base.kylin_url=http\://olapkylin-svc:7070/kylin/api
+
+    base.xml_path=/Users/lizhi/Documents/workspace/olapNew/olap/xml/
+    base.image_path=/Users/lizhi/Documents/workspace/olapNew/olap/image/
+
+
+
+    #base.kylin_url=http\://183.174.228.46:7070/kylin/api
+
+    base.deployurl=http://183.174.228.46:8080/olap/olap.do
+    mail.address=pnliudao@aliyun.com
+    mail.password=xiaocf@123
+
+    #base.dataSource=Mysql
+    #base.url=jdbc\:mysql\://192.168.1.17\:3306/olap?useUnicode=true&characterEncoding=UTF-8
+    #base.driver=com.mysql.jdbc.Driver
+    #base.username=hive
+    #base.password=hive
+    #base.db=mysql
+    #base.kylin_url=http\://192.168.1.17:7070/kylin/api
+    #base.xml_path=/var/www/html/xml/
+    #base.image_path=/var/www/html/image/
+
+    #base.dataSource=Mysql
+    #base.url=jdbc\:mysql\://183.174.228.44\:8282/olap?useUnicode=true&characterEncoding=UTF-8
+    #base.driver=com.mysql.jdbc.Driver
+    #base.username=root
+    #base.password=Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==
+    #base.db=mysql
+    #base.kylin_url=http\://183.174.228.46:8285/kylin/api
+    #base.xml_path=/var/www/html/xml/
+    #base.image_path=/var/www/html/image/
+
+    #Mysql Oracle Postgresql
+    #base.dataSource=Mysql
+    #base.url=jdbc\:mysql\://183.174.228.44:8282/olap2.0?useUnicode=true&characterEncoding=UTF-8
+    #base.driver=com.mysql.jdbc.Driver
+    #base.username=root
+    #base.password=Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==
+    #Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==
+    #Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==
+    #Qc+lVOUSHDmrG3CWleTKQ05KnUce/7QFrsowits2sLUzO2idxdn4r3UXWaYmRNxSlX4H0gMMN89hLCt6WGyejg==
+    #base.db=mysql
+    #base.kylin_url=http\://183.174.228.46:7070/kylin/api
+    #base.xml_path=/var/www/html/xml/
+    #E://scala_workspace/olap/WebContent/xml/
+    #base.image_path=/var/www/html/image/
+    #base.deployurl=http://183.174.228.46:8080/olap/olap.do
+    #base.kylin_url=http\://183.174.228.46:8285/kylin/api
+    #mail.address=pnliudao@aliyun.com
+    #mail.password=xiaocf@123
+
+    #Mysql Oracle Postgresql
+    #base.dataSource=Postgresql 
+    #base.url=jdbc\:postgresql\://127.0.0.1\:5432/olap?useUnicode=true&characterEncoding=UTF-8
+    #base.driver=org.postgresql.Driver
+    #base.username=postgres
+    #base.password=Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==
+    #base.db=postgresql
+    #base.kylin_url=http\://183.174.228.46:8285/kylin/api
+    #base.xml_path=D:\\eclipse-workbench1/Olap-2.0/WebContent/xml/
+    #base.image_path=/var/www/html/image/
+
+    #Mysql Oracle Postgresql
+    #base.dataSource = Oracle
+    #base.url=jdbc:oracle:thin:@192.168.1.221:1521:olap
+    #base.driver="oracle.jdbc.driver.OracleDriver
+    #base.username=root
+    #base.password=Biyu5YzU+6sxDRbmWEa3B2uUcImzDo0BuXjTlL505+/pTb+/0Oqd3ou1R6J8+9Fy3CYrM18nBDqf6wAaPgUGOg==
+    #base.db=oracle
+    #base.kylin_url=http\://183.174.228.46:8285/kylin/api
+    #base.xml_path=D:\\eclipse-workbench1/Olap-2.0/WebContent/xml/
+    #base.image_path=/var/www/html/image/

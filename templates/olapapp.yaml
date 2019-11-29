@@ -1,0 +1,65 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: olapapp-svc
+#   labels:
+#     dep: olapapp-svc
+# spec:
+#   type: NodePort
+#   ports:
+#     - port: 8080
+#       targetPort: olapapp-port
+#       nodePort: 28080
+#   selector:
+#     app: olapapp-pod
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: olapapp
+#   labels:
+#     app: olapapp
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: olapapp-pod
+#   template:
+#     metadata:
+#       labels:
+#         app: olapapp-pod
+#     spec:
+#       containers:
+#         - name: olapapp-c
+#           image: {{ .Values.olapimage }}
+#           imagePullPolicy: IfNotPresent
+#           ports:
+#             - name: olapapp-port
+#               containerPort: 8080
+#           volumeMounts:
+#             - name: olapjdbc
+#               mountPath: /user/apps/tomcat/webapps/olap/WEB-INF/classes/config/jdbc.properties
+#               subPath: jdbc.properties
+#       volumes:
+#         - name: olapjdbc
+#           configMap:
+#             name: olapjdbc
+#             items:
+#               - key: olapjdbc-config
+#                 path: jdbc.properties
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: olapkylin-svc
+#   labels:
+#     dep: olapkylin-svc
+# spec:
+#   type: NodePort
+#   ports:
+#     - port: 7070
+#       targetPort: 7070
+#       nodePort: 28081
+#   selector:
+#     statefulset.kubernetes.io/pod-name: web-0
+

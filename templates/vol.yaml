@@ -1,0 +1,52 @@
+{{- $classname := .Values.volumeclassname}}
+{{- range .Values.volumenum }}
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: {{ $classname }}-{{ .num }}
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+---
+{{- end }}
+
+---
+
+{{- $volname := .Values.volumename}}
+{{- $pvname := .Values.volumepvname}}
+{{- $pvspace := .Values.volumepvspace}}
+{{- $pvpath := .Values.volumepvpath}}
+{{- $volserver := .Values.volumeserver}}
+{{- range .Values.volumenum }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ $pvname }}{{ .num }}
+spec:
+  capacity:
+    storage: {{ $pvspace }}
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ $classname }}-{{ .num }}
+  nfs:
+    path: {{ $pvpath }}{{ $volname }}-{{ .num }}
+    server: {{ $volserver }}
+---
+{{- end }}
+
+---
+
+{{- range .Values.volumenum }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $volname }}-{{ .num }}
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ $pvspace }}
+  storageClassName: {{ $classname }}-{{ .num }}
+---
+{{- end }}

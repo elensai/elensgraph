@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: initpsh
+  namespace: elens-zhitu
+data:
+  initpsh-config: |-
+    #!/bin/bash
+    {{ range .Values.volumenum }}
+    host_dns_{{ .num }}="web-{{ .num }}.ha-svc.elens-zhitu.svc.cluster.local"
+    {{- end }}
+    touch /user/${host_num}f.txt
+    echo "开始安装大数据平台"
+    {{$lastnodeindex := .Values.lastnodeindex|int}} 
+    until [ {{ range $key, $val := .Values.volumenum }}`ping -c 1 web-{{ .num }}.ha-svc.elens-zhitu.svc.cluster.local | grep ', 0% packet loss,' | wc -l` = 1 {{ if eq $key $lastnodeindex }}{{- else }} -a {{ end }}  {{ end }}]
+    do
+      sleep 3
+      echo "等待DNS服务"
+    done
+    {{ range .Values.volumenum }}
+    ssh root@$host_dns_{{ .num }} "source /etc/profile && zkServer.sh start"
+    {{- end }}
+    ssh root@$host_dns_0 "source /etc/profile && hadoop-daemons.sh start journalnode"      
+    ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
+    ssh root@$host_dns_0 "source /etc/profile && hadoop namenode -format"
+    ssh root@$host_dns_2 "scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
+    ssh root@$host_dns_0 "source /etc/profile && start-dfs.sh"
+    ssh root@$host_dns_0 "source /etc/profile && start-yarn.sh"
+    ssh root@$host_dns_1 "source /etc/profile && yarn-daemon.sh start resourcemanager"
+    ssh root@$host_dns_0 "source /etc/profile && mr-jobhistory-daemon.sh start historyserver"
+    ssh root@$host_dns_1 "source /etc/profile && echo \"nohup hive --service hiveserver2 &\" > /user/a.sh && nohup /user/a.sh >/dev/null 2>&1 &"
+    ssh root@$host_dns_1 "source /etc/profile && start-hbase.sh"
+    echo "初始化oozie"
+    sleep 60
+    ssh root@$host_dns_0 "source /etc/profile && oozie-setup.sh prepare-war"
+    ssh root@$host_dns_0 "source /etc/profile && oozie-setup.sh prepare-war sharelib create -fs hdfs://ns  -locallib  /user/apps/oozie-4.0.0/oozie-sharelib-4.0.0-cdh5.3.6-yarn.tar.gz"
+    ssh root@$host_dns_0 "source /etc/profile && ooziedb.sh create -sqlfile oozie.sql -run DB Connection /user/apps/oozie-4.0.0/"
+    ssh root@$host_dns_0 "source /etc/profile && oozied.sh start"
+    sleep 60
+    echo "大数据平台启动成功！"

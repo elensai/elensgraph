@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: slaves
+  namespace: elens-zhitu
+data:
+  slaves-config: |-
+    {{- range .Values.volumenum}}
+    web-{{ .num }}.ha-svc.elens-zhitu.svc.cluster.local
+    {{- end }}
