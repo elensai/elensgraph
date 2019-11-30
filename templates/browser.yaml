@@ -29,7 +29,7 @@ spec:
     - name: spark
       port: 8080
       targetPort: 8080
-      nodePort: 8080
+      nodePort: 8081
   selector:
     app: centospod
 
