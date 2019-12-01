@@ -16,5 +16,3 @@ mysqlimage: registry.elensdata.com/elensai/mysql:5.7
 mysqlvolumepvpath: /nfsdata/zhitu/mysql
 mysqlrootpasswd: 123456
 mysqlvolumespace: 1Gi
-
-olapimage: registry.elensdata.com/elensai/olap2:v1
