@@ -14,7 +14,7 @@ data:
 
               jdbc_user => "root"
 
-              jdbc_password => ""
+              jdbc_password => "123456"
 
               jdbc_driver_library => "./logstash/config/mysql-connector-java-5.1.47.jar"
 
