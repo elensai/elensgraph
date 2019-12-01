@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+  generation: 2
+  name: ingress-zhitu
+  namespace: elens-zhitu
+spec:
+  rules:
+  - host: zhitu.haotian.com
+    http:
+      paths:
+      - backend:
+          serviceName: zhitu-svc
+          servicePort: 8370
+        path: /
