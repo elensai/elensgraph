@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zhitu-logstash
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zhitu-logstash
+    spec:
+      containers:
+        - name: pod-logstash
+          image: "registry.elensdata.com/elensai/logstash:v1"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+          - mountPath: /data/logstash/config/logstash.conf
+            name: logstash-c
+            subPath: logstash.conf
+          
+      volumes:
+      - name: logstash-c
+        configMap:
+          name: logstash-config
+          items:
+          - key: logstash-config
+            path: logstash.conf

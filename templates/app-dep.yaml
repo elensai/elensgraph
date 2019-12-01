@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zhitu-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zhitu-app
+    spec:
+      containers:
+        - name: pod-zhitu
+          image: "registry.elensdata.com/elensai/zhice:v2"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: zhitu-port
+              containerPort: 8370
+              protocol: TCP
+          command: ["/bin/bash"]
+          args: ["-c", "cd /var/www/build && npm run restart && pm2 -f logs"]
+          envFrom:
+            - configMapRef:
+                name: app-env
