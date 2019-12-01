@@ -34,7 +34,6 @@ data:
     ssh root@$host_dns_1 "source /etc/profile && start-hbase.sh"
     echo "初始化hbase"
     sleep 30
-    # ssh root@$host_dns_0 "source /etc/profile && oozie-setup.sh prepare-war"
     ssh root@$host_dns_0 "source /etc/profile && oozie-setup.sh prepare-war sharelib create -fs hdfs://ns  -locallib  /user/apps/oozie-4.0.0/oozie-sharelib-4.0.0-cdh5.3.6-yarn.tar.gz"
     ssh root@$host_dns_0 "source /etc/profile && ooziedb.sh create -sqlfile oozie.sql -run DB Connection /user/apps/oozie-4.0.0/"
     ssh root@$host_dns_0 "source /etc/profile && oozied.sh start"
