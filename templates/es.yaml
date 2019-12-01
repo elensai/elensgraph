@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zhitu-es
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zhitu-es
+    spec:
+      containers:
+      - name: pod-zhitu
+        image: "registry.elensdata.com/elensai/es-5.1.1:zhicev1"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: zhitu-es-92
+          containerPort: 9200
+        - name: zhitu-es-93
+          containerPort: 9300
+        volumeMounts:
+        - name: es-yml-config
+          mountPath: /user/apps/es-5.1.1/config/elasticsearch.yml
+          subPath: elasticsearch.yml
+      volumes:
+      - name: es-yml-config
+        configMap:
+          name: es-yml-config
+          items:
+          - key: es-yml-config
+            path: elasticsearch.yml

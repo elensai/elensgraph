@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zhitu-es-svc
+  labels:
+    dep: zhitu-es-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 9200
+  selector:
+    app: zhitu-es
+
