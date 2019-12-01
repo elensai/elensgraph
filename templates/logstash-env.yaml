@@ -52,7 +52,7 @@ data:
       output {
           if [type] == "node_index" {
               elasticsearch {
-                  hosts => "192.168.1.253:9200"
+                  hosts => "zhitu-es-svc:9200"
                   index => "node_index"
                   document_type => "node"
                   document_id => "%{id}"
