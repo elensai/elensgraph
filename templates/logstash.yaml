@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: pod-logstash
-          image: "registry.elensdata.com/elensai/logstash5.1.1:zhicev3"
+          image: "registry.elensdata.com/elensai/logstash5.1.1:zhicev4"
           imagePullPolicy: IfNotPresent
           volumeMounts:
           - mountPath: /user/apps/logstash/config/logstash.conf
