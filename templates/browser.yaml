@@ -70,6 +70,7 @@
 #   selector:
 #     statefulset.kubernetes.io/pod-name: web-1
 
+---
 
 apiVersion: v1
 kind: Service
