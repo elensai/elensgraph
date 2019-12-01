@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zhitu-neo4j-svc
+  labels:
+    dep: zhitu-neo4j-svc
+spec:
+  type: NodePort
+  ports:
+    - name: neo4j-h
+      targetPort: neo4j-p-h
+      port: 7475
+    - name: neo4j-b
+      targetPort: neo4j-p-b
+      port: 7688
+  selector:
+    app: zhitu-neo4j

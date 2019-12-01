@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zhitu-reids-svc
+  labels:
+    dep: zhitu-redis-sve
+spec:
+  type: NodePort
+  ports:
+    - port: 6379
+      targetPort: redis-port
+  selector:
+    app: zhitu-redis
+
