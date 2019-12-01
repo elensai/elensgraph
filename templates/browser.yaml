@@ -70,6 +70,25 @@
 #   selector:
 #     statefulset.kubernetes.io/pod-name: web-1
 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: oozie-browser
+  labels:
+    dep: oozie-browser
+spec:
+  type: NodePort
+  ports:
+    - name: oozie
+      port: 11000
+      targetPort: 11000
+      nodePort: 30077
+  selector:
+    statefulset.kubernetes.io/pod-name: web-0
+
+
+
 # # 50070  hdfs  0 2
 # # 8080  spark
 # # 8088  yarn  1 2
