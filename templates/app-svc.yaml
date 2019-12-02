@@ -9,8 +9,6 @@ spec:
   ports:
     - port: 8370
       targetPort: zhice-port
-      nodePort: 30010
-      protocol: TCP
   selector:
     app: zhitu-app
 
