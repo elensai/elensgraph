@@ -7,7 +7,12 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 9200
+  - name: p-9200
+    port: 9200
+    targetPort: zhitu-es-92
+  - name: p-9300
+    port: 9300
+    targetPort: zhitu-es-93
   selector:
     app: zhitu-es
 
