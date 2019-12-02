@@ -29,8 +29,8 @@ spec:
       labels:
         app: centospod
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: elens-server4 
+      # nodeSelector:
+      #   kubernetes.io/hostname: elens-server4 
       containers:
       - name: cc
         image: {{ .Values.image }}
