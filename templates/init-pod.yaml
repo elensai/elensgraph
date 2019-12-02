@@ -6,6 +6,8 @@ metadata:
     app: init
 spec:
   restartPolicy: OnFailure
+  nodeSelector:
+    kubernetes.io/hostname: rancher-test-01
   containers:
   - name: init
     image: {{ .Values.image }}

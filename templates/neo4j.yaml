@@ -20,7 +20,7 @@ spec:
   storageClassName: zhitu-neo4j-volume
   nfs:
     path: /nfsdata/zhitu/neo4jdata
-    server: 192.168.1.71
+    server: {{ .Values.volumeserver }}
 
 ---
 
@@ -49,6 +49,8 @@ spec:
       labels:
         app: zhitu-neo4j
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: rancher-test-01
       containers:
         - name: pod-neo4j
           image: "registry.elensdata.com/elensai/neo4j:3.5.8"

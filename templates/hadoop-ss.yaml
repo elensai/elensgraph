@@ -30,7 +30,7 @@ spec:
         app: centospod
     spec:
       nodeSelector:
-        kubernetes.io/hostname: elens-server4 
+        kubernetes.io/hostname: rancher-test-01
       containers:
       - name: cc
         image: {{ .Values.image }}

@@ -9,6 +9,8 @@ spec:
       labels:
         app: zhitu-logstash
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: rancher-test-01
       containers:
         - name: pod-logstash
           image: "registry.elensdata.com/elensai/logstash5.1.1:zhicev4"

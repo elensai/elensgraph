@@ -9,6 +9,8 @@ spec:
       labels:
         app: zhitu-redis
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: rancher-test-01
       containers:
         - name: pod-redis
           image: "registry.elensdata.com/elensai/redis:5.0.4"
