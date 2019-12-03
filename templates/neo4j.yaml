@@ -49,8 +49,6 @@ spec:
       labels:
         app: zhitu-neo4j
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: rancher-test-01
       containers:
         - name: pod-neo4j
           image: "registry.elensdata.com/elensai/neo4j:3.5.8"
@@ -67,5 +65,10 @@ spec:
         - name: neo4j-v
           persistentVolumeClaim:
             claimName: zhitu-neo4j-claim
+      tolerations:
+        - key: "key"
+          operator: "Equal"
+          value: "test02"
+          effect: "PreferNoSchedule"
 
 

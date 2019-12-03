@@ -9,8 +9,6 @@ spec:
       labels:
         app: zhitu-redis
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: rancher-test-01
       containers:
         - name: pod-redis
           image: "registry.elensdata.com/elensai/redis:5.0.4"
@@ -18,4 +16,9 @@ spec:
           ports:
             - name: redis-port
               containerPort: 6379
+      tolerations:
+        - key: "key"
+          operator: "Equal"
+          value: "test02"
+          effect: "PreferNoSchedule"
               

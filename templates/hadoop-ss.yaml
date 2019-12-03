@@ -29,8 +29,6 @@ spec:
       labels:
         app: centospod
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: rancher-test-01
       containers:
       - name: cc
         image: {{ .Values.image }}
@@ -183,6 +181,11 @@ spec:
           items:
           - key: initsh-config
             path: init.sh
+      tolerations:
+      - key: "key"
+        operator: "Equal"
+        value: "test02"
+        effect: "PreferNoSchedule"
 
   volumeClaimTemplates:
   - metadata:

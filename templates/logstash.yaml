@@ -9,8 +9,6 @@ spec:
       labels:
         app: zhitu-logstash
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: rancher-test-01
       containers:
         - name: pod-logstash
           image: "registry.elensdata.com/elensai/logstash5.1.1:zhicev4"
@@ -27,3 +25,8 @@ spec:
           items:
           - key: logstash-config
             path: logstash.conf
+      tolerations:
+      - key: "key"
+        operator: "Equal"
+        value: "test02"
+        effect: "PreferNoSchedule"
