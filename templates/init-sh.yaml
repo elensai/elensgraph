@@ -28,18 +28,21 @@ data:
     ssh root@$host_dns_1 "source /etc/profile && start-yarn.sh"
     ssh root@$host_dns_2 "source /etc/profile && yarn-daemon.sh start resourcemanager"
     ssh root@$host_dns_0 "source /etc/profile && mr-jobhistory-daemon.sh start historyserver"
-    ssh root@$host_dns_1 "source /etc/profile && echo \"nohup hive --service hiveserver2 &\" > /user/a.sh && nohup /user/a.sh >/dev/null 2>&1 &"
+    
     echo "初始化hive"
-    sleep 40
-    ssh root@$host_dns_1 "source /etc/profile && start-hbase.sh"
-    echo "初始化hbase"
+    ssh root@$host_dns_1 "source /etc/profile && echo \"nohup hive --service hiveserver2 &\" > /user/a.sh && nohup /user/a.sh >/dev/null 2>&1 &"
     sleep 30
+
+    echo "初始化hbase"
+    ssh root@$host_dns_1 "source /etc/profile && start-hbase.sh"
+    sleep 30
+
+    echo "初始化oozie"
     ssh root@$host_dns_0 "source /etc/profile && oozie-setup.sh prepare-war sharelib create -fs hdfs://ns  -locallib  /user/apps/oozie-4.0.0/oozie-sharelib-4.0.0-cdh5.3.6-yarn.tar.gz"
     ssh root@$host_dns_0 "source /etc/profile && ooziedb.sh create -sqlfile oozie.sql -run DB Connection /user/apps/oozie-4.0.0/"
     ssh root@$host_dns_0 "source /etc/profile && oozied.sh start"
-    echo "大数据平台启动成功！"
-
+    
     echo "初始化算法组件"
-    hadoop dfs -mkdir /EML/
-    cd /user/apps/data-modules
-    hadoop dfs -put -f Modules /EML/
+    ssh root@$host_dns_0 "hadoop dfs -mkdir /EML/  ; cd /user/apps/data-modules && hadoop dfs -put -f Modules /EML/"
+    
+    echo "大数据平台启动成功！"
