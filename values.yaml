@@ -1,7 +1,7 @@
 volumeclassname: zhitu-volstorage
 volumepvname: zhitu-pv
 volumepvpath: /nfsdata/zhitu/
-volumeserver: 192.168.1.71
+volumeserver: 172.31.15.33
 # volumeserver: 192.168.1.71
 volumepvspace: 1Gi
 volumename: www-web  # 不能随意修改

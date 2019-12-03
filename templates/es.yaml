@@ -9,8 +9,6 @@ spec:
       labels:
         app: zhitu-es
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: rancher-test-01
       containers:
       - name: pod-zhitu
         image: "registry.elensdata.com/elensai/es-5.1.1:zhicev1"
@@ -31,3 +29,8 @@ spec:
           items:
           - key: es-yml-config
             path: elasticsearch.yml
+      tolerations:
+        - key: "key"
+          operator: "Equal"
+          value: "test02"
+          effect: "PreferNoSchedule"
