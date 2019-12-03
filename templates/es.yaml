@@ -15,7 +15,7 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: 1000
-        command: ["/bin/bash", "-c", "tail -f /etc/hosts"]
+        # command: ["/bin/bash", "-c", "tail -f /etc/hosts"]
         ports:
         - name: zhitu-es-92
           containerPort: 9200
