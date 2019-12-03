@@ -11,8 +11,10 @@ spec:
     spec:
       containers:
       - name: pod-zhitu
-        image: "registry.elensdata.com/elensai/es-5.1.1:zhicev1"
+        image: "registry.elensdata.com/elensai/es-5.1.1:zhicev6"
         imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsUser: 1000
         ports:
         - name: zhitu-es-92
           containerPort: 9200
