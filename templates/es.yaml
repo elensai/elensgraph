@@ -24,6 +24,9 @@ spec:
         - name: es-yml-config
           mountPath: /user/apps/es-5.1.1/config/elasticsearch.yml
           subPath: elasticsearch.yml
+        - name: es-jvm-config
+          mountPath: /user/apps/es-5.1.1/config/jvm.options
+          subPath: jvm.options 
       volumes:
       - name: es-yml-config
         configMap:
@@ -31,8 +34,14 @@ spec:
           items:
           - key: es-yml-config
             path: elasticsearch.yml
+      - name: es-jvm-config
+        configMap:
+          name: es-jvm-config
+          items:
+          - key: es-jvm-config
+            path: jvm.options
       tolerations:
-        - key: "key"
-          operator: "Equal"
-          value: "test02"
-          effect: "PreferNoSchedule"
+      - key: "key"
+        operator: "Equal"
+        value: "test02"
+        effect: "PreferNoSchedule"
