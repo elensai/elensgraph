@@ -13,8 +13,8 @@ spec:
       - name: pod-zhitu
         image: "registry.elensdata.com/elensai/es-5.1.1:zhicev6"
         imagePullPolicy: IfNotPresent
-        # securityContext:
-        #   runAsUser: 1000
+        securityContext:
+          runAsUser: 1000
         command: ["/bin/bash", "-c", "tail -f /etc/hosts"]
         ports:
         - name: zhitu-es-92
