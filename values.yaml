@@ -11,7 +11,7 @@ volumenum:
 - num: "2"
 # 总结点数，最后一个节点索引，如：4个节点，最后一个索引是3
 lastnodeindex: 2
-image: registry.elensdata.com/elensai/zhicedatabase:v3
+image: registry.elensdata.com/elensai/zhidatabase:v4
 
 mysqlimage: registry.elensdata.com/elensai/mysql:5.7
 mysqlvolumepvpath: /nfsdata/zhitu/mysql
