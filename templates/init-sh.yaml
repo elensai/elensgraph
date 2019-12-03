@@ -38,3 +38,8 @@ data:
     ssh root@$host_dns_0 "source /etc/profile && ooziedb.sh create -sqlfile oozie.sql -run DB Connection /user/apps/oozie-4.0.0/"
     ssh root@$host_dns_0 "source /etc/profile && oozied.sh start"
     echo "大数据平台启动成功！"
+
+    echo "初始化算法组件"
+    hadoop dfs -mkdir /EML/
+    cd /user/apps/data-modules
+    hadoop dfs -put -f Modules /EML/
