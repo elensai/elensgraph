@@ -9,7 +9,7 @@ data:
     <config>
       <!--本地所需配置-->
       <OOZIE_CLIENT>http://web-0.ha-svc.elens-zhitu.svc.cluster.local:11000/oozie</OOZIE_CLIENT>
-      <NAME_NODE>hdfs://web-0.ha-svc.elens-zhitu.svc.cluster.local:9000,hdfs://web-2.ha-svc.elens-zhitu.svc.cluster.local:9000</NAME_NODE>
+      <NAME_NODE>hdfs://web-2.ha-svc.elens-zhitu.svc.cluster.local:9000</NAME_NODE>
       <YARN_ADDRESS>http://web-1.ha-svc.elens-zhitu.svc.cluster.local:8088</YARN_ADDRESS>
       <YARN_LOGSADDRESS>web-0.ha-svc.elens-zhitu.svc.cluster.local:8042,web-1.ha-svc.elens-zhitu.svc.cluster.local:8042,web-2.ha-svc.elens-zhitu.svc.cluster.local:8042</YARN_LOGSADDRESS>
       <JOB_TRACKER>web-1.ha-svc.elens-zhitu.svc.cluster.local:8032</JOB_TRACKER>
