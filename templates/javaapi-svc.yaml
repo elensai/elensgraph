@@ -9,6 +9,7 @@ spec:
   ports:
   - name: p-8080
     port: 8080
+    nodePort: 53888
   selector:
     app: zhitu-javaapi
 
