@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: pod-zhitu
-        image: "registry.elensdata.com/elensai/javaapp:zhicev1"
+        image: "registry.elensdata.com/elensai/javaapp:zhicev2"
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/application.properties
