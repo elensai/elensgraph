@@ -15,11 +15,11 @@ spec:
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash", "-c", "tail -f /etc/hosts"]
         volumeMounts:
-        - mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/application.properties
+        - mountPath: /user/apps/tomcat/webapps/application.properties
           name: application-properties-v
           subPath: application.properties
         - name: server-config
-          mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/server-config.xml
+          mountPath: /user/apps/tomcat/webapps/server-config.xml
           subPath: server-config.xml
         ports:
         - name: javaport
