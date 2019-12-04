@@ -4,47 +4,53 @@ metadata:
   name: app-env
   namespace: elens-zhitu
 data:
+
   # 提供js接口服务的 IP
-  SERVER_IP: "192.168.1.40"
+  SERVER_IP: '192.168.1.242'  # 可能废弃
 
   # 线上环境使用 production
-  NODE_ENV: "production"
+  NODE_ENV: 'production'
 
   # 提供js接口服务的域名，如果没有，可以使用 IP
-  DOMAIN: "192.168.1.40"
+  DOMAIN: "192.168.1.242"
 
   # 向前兼容，admin字段遗留问题，冗余字段
-  BROWSER_HOST: "192.168.1.40"
+  BROWSER_HOST: "${DOMAIN}"  # nginx 使用
 
   # 提供js接口服务端口
-  PORT: "30010"
+  PORT: '8370'
   # 提供js接口服务的映射端口（部署环境需要）
-  ENV_NODE_PORT: "30010"
+  ENV_NODE_PORT: '8370'
 
   # 浏览器访问端口
-  BROWSER_PORT: "30010"
+  BROWSER_PORT: '30010'
 
   # 大数据平台服务url
   ENV_DATASET_URL: "192.168.1.244:8888"
 
   # 分析报告服务，使用url，冗余字段
-  SELF_SERVER: "http://192.168.1.244:30010"
+  SELF_SERVER: "http://192.168.1.244:${BROWSER_PORT}"
 
   # 文档可视化服务单独部署的ip
-  ENV_SERVER_UNOCONV_HOST: "192.168.1.218"
-  ENV_SERVER_UNOCONV_PORT: "8950"
+  ENV_SERVER_UNOCONV_HOST: '192.168.1.218'
+  ENV_SERVER_UNOCONV_PORT: '8950'
 
-  ENV_NEO4J_IP: "zhice-neo4j-svc:7688"
-  
-  ENV_ELASTIC_IP: "192.168.1.253"
-  ENV_ELASTIC_PORT: "9200"
+  ENV_NEO4J_IP: 'zhitu-neo4j-svc'
+
+  ENV_ELASTIC_IP: 'zhitu-es-svc'
+  ENV_ELASTIC_PORT: '9200'
   # 静态图片映射接口
-  ENV_STATICIMG_PORT: "8899"
+  ENV_STATICIMG_PORT: '8899';
 
-  ENV_REDIS_HOST: "self-reids-svc"
-  ENV_REDIS_PORT: "6379"
 
-  ENV_MYSQL_HOST: "self-mysql-svc"
-  ENV_MYSQL_USER: "root"
-  ENV_MYSQL_PASSWD: ""
-  ENV_MYSQL_PORT: "3306"
+  ENV_REDIS_HOST: 'zhitu-redis-svc'
+  ENV_REDIS_PORT: '6379'
+
+  ENV_MYSQL_HOST: 'mysql-svc'
+  ENV_MYSQL_USER: 'root';
+  ENV_MYSQL_PASSWD: '123456';
+  ENV_MYSQL_PORT: '3306';
+
+
+
+
