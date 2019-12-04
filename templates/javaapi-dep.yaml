@@ -14,13 +14,13 @@ spec:
         image: "registry.elensdata.com/elensai/javaapp:zhicev1"
         imagePullPolicy: IfNotPresent
         volumeMounts:
-        - mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/application.properties
-          name: application-properties-v
-          subPath: application.properties
+        # - mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/application.properties
+        #   name: application-properties-v
+        #   subPath: application.properties
         
-        # - name: server-config
-        #   mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/server-config.xml
-        #   subPath: server-config.xml
+        - name: server-config
+          mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/server-config.xml
+          subPath: server-config.xml
         ports:
         - name: javaport
           containerPort: 8080
