@@ -24,6 +24,9 @@ spec:
         ports:
         - name: javaport
           containerPort: 8080
+        env:
+        - name: LANG
+          value: C.UTF-8
       volumes:
       - name: application-properties-v
         configMap:
