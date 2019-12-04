@@ -49,5 +49,8 @@ data:
     # 1、关闭安全模式 hadoop dfsadmin -safemode leave
 
     # 2、大数据平台支持中文  设置环境变量 LANG=C.UTF-8
+    # yum -y install kde-l10n-Chinese
+    # localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 
+    # export LANG="zh_CN.utf8" 
 
     echo "大数据平台启动成功！"

@@ -8,7 +8,7 @@ spec:
   type: NodePort
   ports:
     - port: 8370
-      targetPort: zhice-port
+      targetPort: zhitu-port
       nodePort: 58370
   selector:
     app: zhitu-app
