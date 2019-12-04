@@ -9,9 +9,9 @@ spec:
   ports:
     - name: neo4j-h
       targetPort: neo4j-p-h
-      port: 7475
+      port: 7474
     - name: neo4j-b
       targetPort: neo4j-p-b
-      port: 7688
+      port: 7687
   selector:
     app: zhitu-neo4j
