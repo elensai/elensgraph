@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: application-properties
+  name: application-properties-config
   namespace: elens-zhitu
 data:
   application-properties: |-
