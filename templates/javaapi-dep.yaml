@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: pod-zhitu
-        image: "registry.elensdata.com/elensai/javaapp:zhicev2"
+        image: "registry.elensdata.com/elensai/javaapp:zhicev3"
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash", "-c", "tail -f /etc/hosts"]
         volumeMounts:
