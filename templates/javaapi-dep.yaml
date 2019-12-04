@@ -13,6 +13,7 @@ spec:
       - name: pod-zhitu
         image: "registry.elensdata.com/elensai/javaapp:zhicev2"
         imagePullPolicy: IfNotPresent
+        command: ["/bin/bash", "-c", "tail -f /etc/hosts"]
         volumeMounts:
         - mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/application.properties
           name: application-properties-v
