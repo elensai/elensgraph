@@ -84,6 +84,15 @@ data:
         </property>
 
         <property>
+            <name>oozie.service.HadoopAccessorService.jobTracker.whitelist</name>
+            <value>web-1.ha-svc.elens-zhitu.svc.cluster.local:8032</value>
+        </property>
+        <property>
+            <name>oozie.service.HadoopAccessorService.jobTracker.whitelist</name>
+            <value>web-2.ha-svc.elens-zhitu.svc.cluster.local:8032</value>
+        </property>
+
+        <property>
             <name>oozie.service.PurgeService.purge.interval</name>
             <value>3600</value>
             <description>
