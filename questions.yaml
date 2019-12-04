@@ -1,0 +1,5 @@
+questions:
+- variable: volumeserver
+  description: "nfs服务器地址配置（公司请填写 192.168.1.71）"
+  type: "string"
+  default: 172.31.15.33
