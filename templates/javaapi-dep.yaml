@@ -13,18 +13,19 @@ spec:
       - name: pod-zhitu
         image: "registry.elensdata.com/elensai/javaapp:zhicev1"
         imagePullPolicy: IfNotPresent
-        ports:
-        - name: javaport
-          containerPort: 8080
         volumeMounts:
-        - name: application-properties
-          mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/application.properties
+        - mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/application.properties
+          name: application-properties-v
           subPath: application.properties
+        
         # - name: server-config
         #   mountPath: /user/apps/tomcat/webapps/lensData/WEB-INF/classes/server-config.xml
         #   subPath: server-config.xml
+        ports:
+        - name: javaport
+          containerPort: 8080
       volumes:
-      - name: application-properties
+      - name: application-properties-v
         configMap:
           name: application-properties
           items: 
