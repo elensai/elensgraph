@@ -24,19 +24,22 @@ spec:
         ports:
         - name: javaport
           containerPort: 8080
+      # volumes:
+      # - name: application-properties-v
+      #   configMap:
+      #     name: application-properties
+      #     items: 
+      #     - key: application-properties
+      #       path: application.properties
+      
       volumes:
-      - name: application-properties-v
-        configMap:
-          name: application-properties
-          items: 
-          - key: application-properties
-            path: application.properties
       - name: server-config
         configMap:
           name: server-config
-          items: 
+          items:
           - key: server-config
             path: server-config.xml
+            
       tolerations:
       - key: "key"
         operator: "Equal"
