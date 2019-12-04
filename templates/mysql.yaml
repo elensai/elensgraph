@@ -62,8 +62,6 @@ spec:
       labels:
         app: mysql-pod
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: rancher-test-01
       containers:
         - name: mysql-pod
           image: {{ .Values.mysqlimage }}
