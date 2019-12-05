@@ -50,3 +50,44 @@ spec:
   storageClassName: {{ $classname }}-{{ .num }}
 ---
 {{- end }}
+
+---
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: init-vl-s
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+
+--- 
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: init-vl-pv
+spec:
+  capacity:
+    storage: 10M
+  volumeMode: Filesystem  # 默认Filesystem，另一个选项Block
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: init-vl
+  nfs: 
+    path: /nfsdata/init
+    server: {{ .Values.volumeserver }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: init-vl-c
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10M
+  storageClassName: init-vl-s

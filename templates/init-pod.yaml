@@ -22,6 +22,10 @@ spec:
       items:
       - key: initpsh-config
         path: init.sh
+  - name: vl
+    persistentVolumeClaim:
+      claimName: init-vl-c
+    
   tolerations:
   - key: "key"
     operator: "Equal"
