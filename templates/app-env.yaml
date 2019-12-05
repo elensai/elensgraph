@@ -6,13 +6,13 @@ metadata:
 data:
 
   # 提供js接口服务的 IP
-  SERVER_IP: "192.168.1.242"  # 可能废弃
+  SERVER_IP: "192.168.1.243"  # 可能废弃
 
   # 线上环境使用 production
   NODE_ENV: "production"
 
   # 提供js接口服务的域名，如果没有，可以使用 IP
-  DOMAIN: "118.190.58.150"
+  DOMAIN: "192.168.1.243"
 
   # 向前兼容，admin字段遗留问题，冗余字段
   BROWSER_HOST: "${DOMAIN}"  # nginx 使用
