@@ -23,6 +23,7 @@ data:
     ssh root@$host_dns_0 "source /etc/profile && hadoop-daemons.sh start journalnode"      
 
     if [ ! -e /initdata/o.lock ]; then
+      echo "初始化hdfs"
       touch /initdata/o.lock;
       ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
       ssh root@$host_dns_0 "source /etc/profile && hadoop namenode -format"
@@ -47,9 +48,10 @@ data:
     ssh root@$host_dns_0 "source /etc/profile && ooziedb.sh create -sqlfile oozie.sql -run DB Connection /user/apps/oozie-4.0.0/"
     ssh root@$host_dns_0 "source /etc/profile && oozied.sh start"
     
-    echo "初始化算法组件"
-    ssh root@$host_dns_0 "source /etc/profile && hadoop dfs -mkdir /EML/ && hadoop dfs -mkdir /EML/lensData && hadoop dfs -mkdir /EML/LensProcessData/ && hadoop dfs -mkdir /EML/oozie/ && hadoop dfs -mkdir /EML/tmp/ && cd /user/apps/data-modules && hadoop dfs -put -f Modules /EML/"
-    
+    if [ ! -e /initdata/o.lock ]; then
+      echo "初始化算法组件"
+      ssh root@$host_dns_0 "source /etc/profile && hadoop dfs -mkdir /EML/ && hadoop dfs -mkdir /EML/lensData && hadoop dfs -mkdir /EML/LensProcessData/ && hadoop dfs -mkdir /EML/oozie/ && hadoop dfs -mkdir /EML/tmp/ && cd /user/apps/data-modules && hadoop dfs -put -f Modules /EML/"
+    fi
 
     # 1、关闭安全模式 hadoop dfsadmin -safemode leave
 
