@@ -22,8 +22,8 @@ data:
     {{- end }}
     ssh root@$host_dns_0 "source /etc/profile && hadoop-daemons.sh start journalnode"      
 
-    if [ ! -e /data/o.lock ]; then
-      touch /data/o.lock;
+    if [ ! -e /initdata/o.lock ]; then
+      touch /initdata/o.lock;
       ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
       ssh root@$host_dns_0 "source /etc/profile && hadoop namenode -format"
       ssh root@$host_dns_2 "scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
