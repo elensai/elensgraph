@@ -24,7 +24,6 @@ data:
 
     if [ ! -e /initdata/o.lock ]; then
       echo "初始化hdfs"
-      touch /initdata/o.lock;
       ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
       ssh root@$host_dns_0 "source /etc/profile && hadoop namenode -format"
       ssh root@$host_dns_2 "scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
@@ -60,4 +59,5 @@ data:
     # localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 
     # export LANG="zh_CN.utf8" 
 
+    touch /initdata/o.lock;
     echo "大数据平台启动成功！"
