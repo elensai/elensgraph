@@ -26,7 +26,7 @@ data:
   BROWSER_PORT: "30010"
 
   # 大数据平台服务url
-  ENV_DATASET_URL: "zhitu-javaapi-svc:8080"
+  ENV_DATASET_URL: "192.168.1.243:53888"
 
   # 分析报告服务，使用url，冗余字段
   SELF_SERVER: "http://192.168.1.244:${BROWSER_PORT}"
