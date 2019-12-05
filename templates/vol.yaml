@@ -75,7 +75,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: init-vl
   nfs: 
-    path: /nfsdata/init
+    path: /nfsdata/zhitu/init
     server: {{ .Values.volumeserver }}
 
 ---
