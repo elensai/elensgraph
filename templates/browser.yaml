@@ -10,7 +10,7 @@ spec:
     - name: hdfs
       port: 50070
       targetPort: 50070
-      nodePort: 50070
+      nodePort: 50078
   selector:
     statefulset.kubernetes.io/pod-name: web-0
 
@@ -28,7 +28,7 @@ spec:
     - name: hdfs
       port: 50070
       targetPort: 50070
-      nodePort: 50071
+      nodePort: 50079
   selector:
     statefulset.kubernetes.io/pod-name: web-2
 
