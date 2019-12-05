@@ -73,7 +73,7 @@ spec:
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: init-vl
+  storageClassName: init-vl-s
   nfs: 
     path: /nfsdata/zhitu/init
     server: {{ .Values.volumeserver }}
