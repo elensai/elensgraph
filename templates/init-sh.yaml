@@ -11,10 +11,12 @@ data:
     {{- end }}
     touch /user/${host_num}f.txt
 
-    {{$volumeinitvar := .Values.volumeinit}}
-    {{- if eq $volumeinitvar "true" }}
+    volumeinitvar={{.Values.volumeinit}}
+    echo $volumeinitvar
+    if [ $volumeinitvar = true ]; then
     rm -f /initdata/o.lock  
-    {{- end }}
+    fi
+
 
     echo "开始安装大数据平台"
     {{$lastnodeindex := .Values.lastnodeindex|int}} 
