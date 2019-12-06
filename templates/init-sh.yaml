@@ -33,8 +33,9 @@ data:
 
     if [ ! -e /initdata/o.lock ]; then
       echo "初始化hdfs"
-      ssh root@$host_dns_0 "source /etc/profile && hadoop namenode -format"
-      ssh root@$host_dns_2 "scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
+      ssh root@$host_dns_0 "rm -rf /user/data/hadoop/* && source /etc/profile && hadoop namenode -format"
+      ssh root@$host_dns_1 "rm -rf /user/data/hadoop/*"
+      ssh root@$host_dns_2 "rm -rf /user/data/hadoop/* && scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
     fi
 
     ssh root@$host_dns_0 "source /etc/profile && start-dfs.sh"
