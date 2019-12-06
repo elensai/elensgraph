@@ -30,25 +30,26 @@ data:
       ssh root@$host_dns_2 "rm -rf /user/data/hadoop/*"
     fi
 
-    # {{ range .Values.volumenum }}
-    # ssh root@$host_dns_{{ .num }} "source /etc/profile && zkServer.sh start"
-    # {{- end }}
-    # ssh root@$host_dns_0 "source /etc/profile && hadoop-daemons.sh start journalnode"      
+    {{ range .Values.volumenum }}
+    ssh root@$host_dns_{{ .num }} "source /etc/profile && zkServer.sh start"
+    {{- end }}
+
+    ssh root@$host_dns_0 "source /etc/profile && hadoop-daemons.sh start journalnode"      
     
 
-    # if [ $volumeinitvar = true ]; then
-    #   echo "初始化hdfs"
-    #   ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
-    #   ssh root@$host_dns_0 "source /etc/profile && hadoop namenode -format"
-    #   ssh root@$host_dns_2 "scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
-    # else
-    #   ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
-    # fi
+    if [ $volumeinitvar = true ]; then
+      echo "初始化hdfs"
+      ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
+      ssh root@$host_dns_0 "source /etc/profile && hadoop namenode -format"
+      ssh root@$host_dns_2 "scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
+    else
+      ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
+    fi
 
-    # ssh root@$host_dns_0 "source /etc/profile && start-dfs.sh"
-    # ssh root@$host_dns_1 "source /etc/profile && start-yarn.sh"
-    # ssh root@$host_dns_2 "source /etc/profile && yarn-daemon.sh start resourcemanager"
-    # ssh root@$host_dns_0 "source /etc/profile && mr-jobhistory-daemon.sh start historyserver"
+    ssh root@$host_dns_0 "source /etc/profile && start-dfs.sh"
+    ssh root@$host_dns_1 "source /etc/profile && start-yarn.sh"
+    ssh root@$host_dns_2 "source /etc/profile && yarn-daemon.sh start resourcemanager"
+    ssh root@$host_dns_0 "source /etc/profile && mr-jobhistory-daemon.sh start historyserver"
     
     # echo "初始化hive"
     # ssh root@$host_dns_1 "source /etc/profile && echo \"nohup hive --service hiveserver2 &\" > /user/a.sh && nohup /user/a.sh >/dev/null 2>&1 &"
