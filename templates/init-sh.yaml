@@ -14,8 +14,9 @@ data:
     volumeinitvar={{.Values.volumeinit}}
     echo $volumeinitvar
     if [ $volumeinitvar = true ]; then
-    echo "1111111111111111111111111111111111111111111111remove"
-    rm -f /initdata/o.lock  
+      ssh root@$host_dns_0 "rm -rf /user/data/hadoop/*"
+      ssh root@$host_dns_1 "rm -rf /user/data/hadoop/*"
+      ssh root@$host_dns_2 "rm -rf /user/data/hadoop/*"
     fi
 
     echo "开始安装大数据平台"
@@ -29,13 +30,15 @@ data:
     ssh root@$host_dns_{{ .num }} "source /etc/profile && zkServer.sh start"
     {{- end }}
     ssh root@$host_dns_0 "source /etc/profile && hadoop-daemons.sh start journalnode"      
-    ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
+    
 
-    if [ ! -e /initdata/o.lock ]; then
+    if [ $volumeinitvar = true ]; then
       echo "初始化hdfs"
-      ssh root@$host_dns_0 "rm -rf /user/data/hadoop/* && source /etc/profile && hadoop namenode -format"
-      ssh root@$host_dns_1 "rm -rf /user/data/hadoop/*"
-      ssh root@$host_dns_2 "rm -rf /user/data/hadoop/* && scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
+      ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
+      ssh root@$host_dns_0 "source /etc/profile && hadoop namenode -format"
+      ssh root@$host_dns_2 "scp -r web-0.ha-svc.elens-zhitu.svc.cluster.local:/user/data/hadoop/hdfs /user/data/hadoop/"
+    else
+      ssh root@$host_dns_0 "source /etc/profile && hdfs zkfc -formatZK"
     fi
 
     ssh root@$host_dns_0 "source /etc/profile && start-dfs.sh"
@@ -56,10 +59,10 @@ data:
     ssh root@$host_dns_0 "source /etc/profile && ooziedb.sh create -sqlfile oozie.sql -run DB Connection /user/apps/oozie-4.0.0/"
     ssh root@$host_dns_0 "source /etc/profile && oozied.sh start"
     
-    if [ ! -e /initdata/o.lock ]; then
+    if [ $volumeinitvar = true ]; then
       echo "初始化算法组件"
       ssh root@$host_dns_0 "source /etc/profile && hadoop dfs -mkdir /EML/ && hadoop dfs -mkdir /EML/lensData && hadoop dfs -mkdir /EML/LensProcessData/ && hadoop dfs -mkdir /EML/oozie/ && hadoop dfs -mkdir /EML/tmp/ && cd /user/apps/data-modules && hadoop dfs -put -f Modules /EML/"
     fi
 
-    touch /initdata/o.lock;
+    # touch /initdata/o.lock;
     echo "大数据平台启动成功！"
