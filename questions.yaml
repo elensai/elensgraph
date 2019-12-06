@@ -6,4 +6,4 @@ questions:
 - variable: volumeinit
   description: "大数据平台是否初始化"
   type: string
-  default: "true"
+  default: "false"
