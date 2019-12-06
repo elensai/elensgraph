@@ -16,8 +16,8 @@ spec:
           ports:
             - name: zhitu-port
               containerPort: 8370
-          command: ["/bin/bash", "-c", "tail -f /etc/hosts"]
-          # args: ["-c", "cd /var/www/build && npm run restart && pm2 -f logs"]
+          command: ["/bin/bash"]
+          args: ["-c", "cd /var/www/build && npm run restart && pm2 -f logs"]
           envFrom:
             - configMapRef:
                 name: app-env
