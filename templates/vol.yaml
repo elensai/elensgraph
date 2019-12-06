@@ -91,3 +91,44 @@ spec:
     requests:
       storage: 10M
   storageClassName: init-vl-s
+
+---
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: es-vl-s
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+
+--- 
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: es-vl-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem  # 默认Filesystem，另一个选项Block
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: es-vl-s
+  nfs: 
+    path: /nfsdata/zhitu/esdata
+    server: {{ .Values.volumeserver }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: es-vl-c
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: es-vl-s

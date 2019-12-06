@@ -28,6 +28,8 @@ spec:
         - name: es-jvm-config
           mountPath: /user/apps/es-5.1.1/config/jvm.options
           subPath: jvm.options 
+        - name: es-data
+          mountPath: /user/apps/es-5.1.1/data
       volumes:
       - name: es-yml-config
         configMap:
@@ -41,6 +43,10 @@ spec:
           items:
           - key: es-jvm-config
             path: jvm.options
+      - name: es-data
+        persistentVolumeClaim:
+          claimName: es-vl-c
+
       tolerations:
       - key: "key"
         operator: "Equal"
