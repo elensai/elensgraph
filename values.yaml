@@ -5,6 +5,7 @@ volumepvpath: /nfsdata/zhitu/
 volumeserver: 192.168.1.71
 volumepvspace: 1Gi
 volumename: www-web  # 不能随意修改
+volumeinit: "true"
 volumenum:
 - num: "0"
 - num: "1"
@@ -17,3 +18,4 @@ mysqlimage: registry.elensdata.com/elensai/mysql:5.7
 mysqlvolumepvpath: /nfsdata/zhitu/mysql
 mysqlrootpasswd: 123456
 mysqlvolumespace: 1Gi
+

@@ -10,6 +10,12 @@ data:
     host_dns_{{ .num }}="web-{{ .num }}.ha-svc.elens-zhitu.svc.cluster.local"
     {{- end }}
     touch /user/${host_num}f.txt
+
+    {{$volumeinitvar := .Values.volumeinit}}
+    {{- if eq $volumeinitvar "true" }}
+    rm -f /initdata/o.lock  
+    {{- end }}
+
     echo "开始安装大数据平台"
     {{$lastnodeindex := .Values.lastnodeindex|int}} 
     until [ {{ range $key, $val := .Values.volumenum }}`ping -c 1 web-{{ .num }}.ha-svc.elens-zhitu.svc.cluster.local | grep ', 0% packet loss,' | wc -l` = 1 {{ if eq $key $lastnodeindex }}{{- else }} -a {{ end }}  {{ end }}]
@@ -40,7 +46,7 @@ data:
 
     echo "初始化hbase"
     ssh root@$host_dns_1 "source /etc/profile && start-hbase.sh"
-    sleep 30
+    sleep 15
 
     echo "初始化oozie"
     ssh root@$host_dns_0 "source /etc/profile && oozie-setup.sh prepare-war sharelib create -fs hdfs://ns  -locallib  /user/apps/oozie-4.0.0/oozie-sharelib-4.0.0-cdh5.3.6-yarn.tar.gz"
@@ -51,13 +57,6 @@ data:
       echo "初始化算法组件"
       ssh root@$host_dns_0 "source /etc/profile && hadoop dfs -mkdir /EML/ && hadoop dfs -mkdir /EML/lensData && hadoop dfs -mkdir /EML/LensProcessData/ && hadoop dfs -mkdir /EML/oozie/ && hadoop dfs -mkdir /EML/tmp/ && cd /user/apps/data-modules && hadoop dfs -put -f Modules /EML/"
     fi
-
-    # 1、关闭安全模式 hadoop dfsadmin -safemode leave
-
-    # 2、大数据平台支持中文  设置环境变量 LANG=C.UTF-8
-    # yum -y install kde-l10n-Chinese
-    # localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 
-    # export LANG="zh_CN.utf8" 
 
     touch /initdata/o.lock;
     echo "大数据平台启动成功！"
