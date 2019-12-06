@@ -12,7 +12,17 @@ data:
     touch /user/${host_num}f.txt
 
     volumeinitvar={{.Values.volumeinit}}
-    echo $volumeinitvar
+    echo "是否初始化大数据平台："$volumeinitvar
+    
+
+    echo "开始安装大数据平台"
+    {{$lastnodeindex := .Values.lastnodeindex|int}} 
+    until [ {{ range $key, $val := .Values.volumenum }}`ping -c 1 web-{{ .num }}.ha-svc.elens-zhitu.svc.cluster.local | grep ', 0% packet loss,' | wc -l` = 1 {{ if eq $key $lastnodeindex }}{{- else }} -a {{ end }}  {{ end }}]
+    do
+      sleep 3
+      echo "等待DNS服务"
+    done
+
     if [ $volumeinitvar = true ]; then
       echo "清理源数据"
       ssh root@$host_dns_0 "rm -rf /user/data/hadoop/*"
@@ -20,13 +30,6 @@ data:
       ssh root@$host_dns_2 "rm -rf /user/data/hadoop/*"
     fi
 
-    # echo "开始安装大数据平台"
-    # {{$lastnodeindex := .Values.lastnodeindex|int}} 
-    # until [ {{ range $key, $val := .Values.volumenum }}`ping -c 1 web-{{ .num }}.ha-svc.elens-zhitu.svc.cluster.local | grep ', 0% packet loss,' | wc -l` = 1 {{ if eq $key $lastnodeindex }}{{- else }} -a {{ end }}  {{ end }}]
-    # do
-    #   sleep 3
-    #   echo "等待DNS服务"
-    # done
     # {{ range .Values.volumenum }}
     # ssh root@$host_dns_{{ .num }} "source /etc/profile && zkServer.sh start"
     # {{- end }}
