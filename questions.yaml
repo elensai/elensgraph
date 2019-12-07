@@ -5,5 +5,7 @@ questions:
   default: 192.168.1.71
 - variable: volumeinit
   description: "大数据平台是否初始化"
-  type: string
-  default: "false"
+  type: enum
+  options:
+  - true
+  - false
