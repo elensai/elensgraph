@@ -32,8 +32,8 @@ data:
   SELF_SERVER: "http://192.168.1.244:${BROWSER_PORT}"
 
   # 文档可视化服务单独部署的ip
-  ENV_SERVER_UNOCONV_HOST: "192.168.1.218"
-  ENV_SERVER_UNOCONV_PORT: "8950"
+  ENV_SERVER_UNOCONV_HOST: "unoconv-svc"
+  ENV_SERVER_UNOCONV_PORT: "3000"
 
   ENV_NEO4J_IP: "zhitu-neo4j-svc"
 

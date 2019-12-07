@@ -10,11 +10,11 @@ spec:
     - name: app 
       port: 8370
       targetPort: zhitu-port
-      nodePort: 58370
+      nodePort: 58378
     - name: proxy
       port: 80
       targetPort: 80
-      nodePort: 58378
+      nodePort: 58370
   selector:
     app: zhitu-app
 
