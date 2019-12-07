@@ -19,8 +19,8 @@ spec:
           env:
             - name: PAYLOAD_MAX_SIZE
               value: "104857600"
-            - name: TIMEOUT_SERVER
-              value: "600000"
+            # - name: TIMEOUT_SERVER
+            #   value: "600000"
           # command: ["/bin/bash"]
           # args: ["-c", "cd /var/www/build && npm run restart && pm2 -f logs"]
           # envFrom:
