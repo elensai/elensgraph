@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zhitu-unoconv
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zhitu-unoconv
+    spec:
+      containers:
+        - name: pod-unoconv
+          image: "registry.elensdata.com/elensai/unoconv-webservice:v1"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: unoconv-port
+              containerPort: 3000
+          # command: ["/bin/bash"]
+          # args: ["-c", "cd /var/www/build && npm run restart && pm2 -f logs"]
+          # envFrom:
+          #   - configMapRef:
+          #       name: app-env

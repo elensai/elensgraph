@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: unoconv-svc
+  labels:
+    dep: unoconv-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: unoconv-port
+      nodePort: 58300
+  selector:
+    app: zhitu-unoconv
+
