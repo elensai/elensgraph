@@ -21,3 +21,14 @@ spec:
           envFrom:
             - configMapRef:
                 name: app-env
+          volumeMounts:
+            - name: ng
+              mountPath: /usr/local/nginx/conf/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: ng
+          configMap:
+            name: app-ng-config
+            items:
+              - key: app-ng-config
+                path: nginx.conf

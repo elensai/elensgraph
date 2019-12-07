@@ -7,9 +7,14 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8370
+    - name: app 
+      port: 8370
       targetPort: zhitu-port
       nodePort: 58370
+    - name: proxy
+      port: 80
+      targetPort: 80
+      nodePort: 58378
   selector:
     app: zhitu-app
 
