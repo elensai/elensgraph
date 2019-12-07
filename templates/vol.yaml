@@ -132,3 +132,44 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: es-vl-s
+
+--- 
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: appdata-vl-s
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+
+--- 
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: appdata-vl-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem 
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: appdata-vl-s
+  nfs: 
+    path: /nfsdata/zhitu/appdata
+    server: {{ .Values.volumeserver }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: appdata-vl-c
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: appdata-vl-s

@@ -25,6 +25,11 @@ spec:
             - name: ng
               mountPath: /usr/local/nginx/conf/nginx.conf
               subPath: nginx.conf
+            - name: app-window-url
+              mountPath: /var/www/build/client/static/config.js
+              subPath: config.js
+            - name: appdata
+              mountPath: /var/www/build/www/static
       volumes:
         - name: ng
           configMap:
@@ -32,3 +37,12 @@ spec:
             items:
               - key: app-ng-config
                 path: nginx.conf
+        - name: app-window-url
+          configMap:
+            name: app-window-url
+            items:
+              - key: app-window-url
+                path: config.js
+        - name: appdata
+          persistentVolumeClaim:
+            claimName: appdata-vl-c
