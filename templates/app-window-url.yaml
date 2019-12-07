@@ -4,8 +4,9 @@ metadata:
   name: app-window-url
   namespace: elens-zhitu
 data:
-  var API_URL = {
-    BASE_URL: "/api",
-    ENV_DATASET_URL: "192.168.1.243:53888"
-  }
+  app-window-url: |-
+    var API_URL = {
+      BASE_URL: "/api",
+      ENV_DATASET_URL: "192.168.1.243:53888"
+    }
   
