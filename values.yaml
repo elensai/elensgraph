@@ -19,3 +19,5 @@ mysqlvolumepvpath: /nfsdata/zhitu/mysql
 mysqlrootpasswd: 123456
 mysqlvolumespace: 1Gi
 
+browser_ip: 192.168.1.243
+
