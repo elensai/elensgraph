@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: pod-zhitu
-          image: "registry.elensdata.com/elensai/zhitu:v10"
+          image: "registry.elensdata.com/elensai/zhitu:v11"
           imagePullPolicy: IfNotPresent
           ports:
             - name: zhitu-port

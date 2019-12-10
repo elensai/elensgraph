@@ -37,3 +37,4 @@ data:
     symbolic-links=0
     character_set_server=utf8mb4
     explicit_defaults_for_timestamp=true
+    max_connections = 5000
