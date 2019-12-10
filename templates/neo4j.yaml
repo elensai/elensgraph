@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
         - name: pod-neo4j
-          image: "registry.elensdata.com/elensai/neo4j:3.5.8"
+          image: {{ .Values.neo4jimage }}
           imagePullPolicy: IfNotPresent
           ports:
             - name: neo4j-p-h

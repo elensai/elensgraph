@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: pod-zhitu
-        image: "registry.elensdata.com/elensai/javaapi:v17"
+        image: {{ .Values.javaapiimage }}
         imagePullPolicy: IfNotPresent
         # command: ["/bin/bash", "-c", "tail -f /etc/hosts"]
         volumeMounts:

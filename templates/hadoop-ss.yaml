@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: cc
-        image: {{ .Values.image }}
+        image: {{ .Values.databaseimage }}
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash", "-c", "sh /user/init.sh"]
         securityContext:

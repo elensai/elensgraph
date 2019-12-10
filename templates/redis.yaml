@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: pod-redis
-          image: "registry.elensdata.com/elensai/redis:5.0.4"
+          image: {{ .Values.redisimage }}
           imagePullPolicy: IfNotPresent
           ports:
             - name: redis-port

@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: pod-unoconv
-          image: "registry.elensdata.com/elensai/unoconv-webservice:v1"
+          image: {{ .Values.unoconvimage }}
           imagePullPolicy: IfNotPresent
           ports:
             - name: unoconv-port
