@@ -21,7 +21,7 @@ logstashimage: registry.elensdata.com/elensai/logstash5.1.1:zhicev4
 
 zhituimage: registry.elensdata.com/elensai/zhitu:v16
 
-javaapiimage: registry.elensdata.com/elensai/javaapi:v19
+javaapiimage: registry.elensdata.com/elensai/javaapi:v20
 
 neo4jimage: registry.elensdata.com/elensai/neo4j:3.5.8
 
