@@ -19,7 +19,7 @@ mysqlimage: registry.elensdata.com/elensai/mysql:5.7
 
 logstashimage: registry.elensdata.com/elensai/logstash5.1.1:zhicev4
 
-zhituimage: registry.elensdata.com/elensai/zhitu:v15
+zhituimage: registry.elensdata.com/elensai/zhitu:v16
 
 javaapiimage: registry.elensdata.com/elensai/javaapi:v19
 
