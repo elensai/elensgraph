@@ -13,7 +13,7 @@ metadata:
   name: zhitu-neo4j-pv
 spec:
   capacity:
-    storage: 3Gi
+    storage: {{ .Values.neo4jdata }}
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
@@ -33,7 +33,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 3Gi
+      storage: {{ .Values.neo4jdata }}
   storageClassName: zhitu-neo4j-volume
 
 ---

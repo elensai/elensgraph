@@ -109,7 +109,7 @@ metadata:
   name: es-vl-pv
 spec:
   capacity:
-    storage: 1Gi
+    storage:  {{ .Values.esdata }}
   volumeMode: Filesystem 
   accessModes:
   - ReadWriteOnce
@@ -130,7 +130,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.esdata }}
   storageClassName: es-vl-s
 
 --- 
@@ -150,7 +150,7 @@ metadata:
   name: appdata-vl-pv
 spec:
   capacity:
-    storage: 1Gi
+    storage: {{ .Values.appdataspace }}
   volumeMode: Filesystem 
   accessModes:
   - ReadWriteMany
@@ -171,5 +171,5 @@ spec:
   - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.appdataspace }}
   storageClassName: appdata-vl-s

@@ -3,6 +3,7 @@ volumepvname: zhitu-pv
 volumepvpath: /nfsdata/zhitu/
 # volumeserver: 172.31.15.33
 volumeserver: 192.168.1.90
+# 大数据平台存储
 volumepvspace: 1Gi
 volumename: www-web  # 不能随意修改
 volumeinit: "true"
@@ -12,6 +13,9 @@ volumenum:
 - num: "2"
 # 总结点数，最后一个节点索引，如：4个节点，最后一个索引是3
 lastnodeindex: 2
+
+# 昊天主节点 ip
+browser_ip: 192.168.1.243
 
 databaseimage: registry.elensdata.com/elensai/zhidatabase:v6
 
@@ -31,7 +35,16 @@ unoconvimage: registry.elensdata.com/elensai/unoconv-webservice:v1
 
 mysqlvolumepvpath: /nfsdata/zhitu/mysql
 mysqlrootpasswd: 123456
+
+# mysql存储
 mysqlvolumespace: 1Gi
 
-browser_ip: 192.168.1.243
+# 静态图片存储
+appdataspace: 1Gi
+
+# es 存储
+esdata: 1Gi
+
+# neo4j 存储
+neo4jdata: 3Gi
 
