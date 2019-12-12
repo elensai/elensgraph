@@ -6,13 +6,13 @@ metadata:
 data:
 
   # 提供js接口服务的 IP
-  SERVER_IP: "192.168.1.243"  # 可能废弃
+  SERVER_IP: "{{ .Values.browser_ip }}"  # 可能废弃
 
   # 线上环境使用 production
   NODE_ENV: "production"
 
   # 提供js接口服务的域名，如果没有，可以使用 IP
-  DOMAIN: "192.168.1.243"
+  DOMAIN: "{{ .Values.browser_ip }}"
 
   # 向前兼容，admin字段遗留问题，冗余字段
   BROWSER_HOST: "${DOMAIN}"  # nginx 使用
@@ -26,7 +26,7 @@ data:
   BROWSER_PORT: "30010"
 
   # 大数据平台服务url
-  ENV_DATASET_URL: "192.168.1.243:53888"
+  ENV_DATASET_URL: "{{ .Values.browser_ip }}:53888"
 
   # 分析报告服务，使用url，冗余字段
   SELF_SERVER: "http://192.168.1.244:${BROWSER_PORT}"
