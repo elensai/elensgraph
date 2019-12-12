@@ -7,4 +7,8 @@ questions:
   description: "大数据平台是否初始化"
   type: boolean
   default: false
+- variable: browser_ip
+  description: "昊天主机 ip 地址"
+  type: string
+  default: 192.168.1.243
   

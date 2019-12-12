@@ -1,10 +1,10 @@
 volumeclassname: zhitu-volstorage
 volumepvname: zhitu-pv
 volumepvpath: /nfsdata/zhitu/
-# volumeserver: 172.31.15.33
+# nfs地址
 volumeserver: 192.168.1.90
 # 大数据平台存储
-volumepvspace: 1Gi
+volumepvspace: 10Gi
 volumename: www-web  # 不能随意修改
 volumeinit: "true"
 volumenum:
@@ -37,14 +37,14 @@ mysqlvolumepvpath: /nfsdata/zhitu/mysql
 mysqlrootpasswd: 123456
 
 # mysql存储
-mysqlvolumespace: 1Gi
+mysqlvolumespace: 5Gi
 
 # 静态图片存储
-appdataspace: 1Gi
+appdataspace: 5Gi
 
 # es 存储
-esdata: 1Gi
+esdata: 5Gi
 
 # neo4j 存储
-neo4jdata: 3Gi
+neo4jdata: 5Gi
 
