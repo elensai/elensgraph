@@ -21,6 +21,8 @@ databaseimage: registry.elensdata.com/elensai/zhidatabase:v6
 
 mysqlimage: registry.elensdata.com/elensai/mysql:5.7
 
+esimage: registry.elensdata.com/elensai/es-5.1.1:zhiv7
+
 logstashimage: registry.elensdata.com/elensai/logstash5.1.1:zhicev4
 
 zhituimage: registry.elensdata.com/elensai/zhitu:v16

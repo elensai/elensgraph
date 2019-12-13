@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: pod-zhitu
-        image: "registry.elensdata.com/elensai/es-5.1.1:zhiv7"
+        image: "{{ .Values.esimage }}"
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsUser: 1000
