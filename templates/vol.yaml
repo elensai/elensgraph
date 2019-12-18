@@ -75,7 +75,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: init-vl-s
   nfs: 
-    path: /nfsdata/zhitu/init
+    path: /data/nfsdata/zhitu/init
     server: {{ .Values.volumeserver }}
 
 ---
@@ -116,7 +116,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: es-vl-s
   nfs: 
-    path: /nfsdata/zhitu/esdata
+    path: /data/nfsdata/zhitu/esdata
     server: {{ .Values.volumeserver }}
 
 ---
@@ -157,7 +157,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: appdata-vl-s
   nfs: 
-    path: /nfsdata/zhitu/appdata
+    path: /data/nfsdata/zhitu/appdata
     server: {{ .Values.volumeserver }}
 
 ---

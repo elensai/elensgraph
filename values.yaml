@@ -1,6 +1,6 @@
 volumeclassname: zhitu-volstorage
 volumepvname: zhitu-pv
-volumepvpath: /nfsdata/zhitu/
+volumepvpath: /data/nfsdata/zhitu/
 # nfs地址
 volumeserver: 192.168.1.90
 # 大数据平台存储
@@ -35,7 +35,7 @@ redisimage: registry.elensdata.com/elensai/redis:5.0.4
 
 unoconvimage: registry.elensdata.com/elensai/unoconv-webservice:v1
 
-mysqlvolumepvpath: /nfsdata/zhitu/mysql
+mysqlvolumepvpath: /data/nfsdata/zhitu/mysql
 mysqlrootpasswd: 123456
 
 # mysql存储

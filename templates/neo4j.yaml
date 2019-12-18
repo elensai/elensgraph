@@ -19,7 +19,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: zhitu-neo4j-volume
   nfs:
-    path: /nfsdata/zhitu/neo4jdata
+    path: /data/nfsdata/zhitu/neo4jdata
     server: {{ .Values.volumeserver }}
 
 ---
